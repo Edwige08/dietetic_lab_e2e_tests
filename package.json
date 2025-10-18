@@ -1,0 +1,33 @@
+{
+  "name": "dietetic_lab_e2e_tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "cy:run:chrome": "cypress run --browser chrome",
+    "cy:run:headed": "cypress run --headed",
+    "cy:run:ci": "cross-env CYPRESS_BASE_URL=$CYPRESS_BASE_URL CYPRESS_API_URL=$CYPRESS_API_URL cypress run",
+    "cy:open:with-env": "cross-env CYPRESS_BASE_URL=$CYPRESS_BASE_URL CYPRESS_API_URL=$CYPRESS_API_URL cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Edwige08/dietetic_lab_e2e_tests.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Edwige08/dietetic_lab_e2e_tests/issues"
+  },
+  "homepage": "https://github.com/Edwige08/dietetic_lab_e2e_tests#readme",
+  "devDependencies": {
+    "@types/node": "^24.8.1",
+    "cypress": "^15.5.0",
+    "typescript": "^5.9.3",
+    "cross-env": "^7.0.3"
+  }
+}
