@@ -1,7 +1,6 @@
-```markdown
-# dietetic_lab_e2e_tests
+# TESTS END-TO-END POUR DIETETIC LAB
 
-Petit dossier contenant les tests end-to-end avec Cypress pour l'application front/back.
+Dossier contenant les tests end-to-end avec Cypress pour l'application front/back.
 
 Pré-requis
 - Node.js (>=16)
@@ -11,7 +10,7 @@ Variables d'environnement
 - CYPRESS_BASE_URL : URL du front-end (ex. http://localhost:3000)
 - CYPRESS_API_URL : URL de l'API back-end (ex. http://localhost:8000)
 
-Copiez `.env.example` en `.env` pour définir ces variables localement, ou exportez-les dans votre shell.
+Copiez `.env` pour définir ces variables localement, ou exportez-les dans votre shell.
 
 Scripts utiles
 - `npm run cy:open` — ouvre l'UI Cypress
@@ -36,5 +35,3 @@ npm run cy:open:with-env
 Notes
 - Les tests actuels attendent que l'interface expose des attributs `data-cy` sur certains éléments (inputs, boutons).
 - Si vous exécutez ces tests contre un back-end local, assurez-vous que l'API d'authentification et les fixtures existent.
-```
-# dietetic_lab_e2e_tests
