@@ -1,6 +1,6 @@
 describe('Authentification', () => {
   beforeEach(() => {
-    // Avant chaque test, visite la page de login
+    // Before each test, visit the signin page
     cy.visit('/signin')
   })
 
@@ -10,7 +10,16 @@ describe('Authentification', () => {
     cy.contains('button', 'Me connecter').should('be.visible')
   })
 
-  it('devrait se connecter avec des identifiants valides', () => {
+  it('devrait afficher une erreur avec des identifiants invalides', () => {
+    cy.get('input[name="mail"]').type('wrong@example.com')
+    cy.get('input[name="password"]').type('wrongpassword')
+    cy.contains('button', 'Me connecter').click()
+
+    cy.contains('Email ou mot de passe incorrect').should('be.visible')
+  })
+
+  it('devrait se connecter avec des identifiants valides, puis se déconnecter correctement', () => {
+    // First, connect
     const email = 'test@example.com'
     const password = '123ABCdef;:!'
     cy.createTestUser(email, password).then((response) => {
@@ -20,16 +29,17 @@ describe('Authentification', () => {
     cy.get('input[name="password"]').type(password)
     cy.contains('button', 'Me connecter').click()
 
-    // Vérifie la redirection après login vers le profil
+    // Verify it redirects to profile page
     cy.url().should('include', '/personnalProfile')
-  })
 
-  it('devrait afficher une erreur avec des identifiants invalides', () => {
-    cy.get('input[name="mail"]').type('wrong@example.com')
-    cy.get('input[name="password"]').type('wrongpassword')
-    cy.contains('button', 'Me connecter').click()
+    // Click on the logout button
+    cy.contains('button', 'Déconnexion').click()
 
-    // The app shows an inline message on failed login — check for common messages
-    cy.contains('Email ou mot de passe incorrect').should('be.visible')
+    // Verify it redirects to the home page
+    cy.url().should('eq', Cypress.config().baseUrl + '/')
+
+    // Verify it no longer can access the content of the profile page
+    cy.visit('/personnalProfile')
+    cy.contains('pas connecté').should('be.visible')
   })
 })
