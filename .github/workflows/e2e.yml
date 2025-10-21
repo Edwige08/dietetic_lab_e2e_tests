@@ -21,3 +21,6 @@ jobs:
         with:
           browser: chrome
           headless: true
+        env:
+          CYPRESS_BASE_URL: ${{ secrets.CYPRESS_BASE_URL }}
+          CYPRESS_API_URL: ${{ secrets.CYPRESS_API_URL }}
