@@ -1,9 +1,8 @@
 import { defineConfig } from 'cypress'
 import path from 'path'
 
-// Read environment variables (if a dotenv dependency is present, try to load a .env file)
+// Read environment variables from .env file
 try {
-    // optional: only attempt to load dotenv if installed locally
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const dotenv = require('dotenv')
     const envPath = path.resolve(process.cwd(), '.env')
@@ -12,8 +11,9 @@ try {
     // no-op: dotenv not installed; that's fine — we only attempt to make local dev easier
 }
 
-const baseUrl = "https://dietetic-lab.vercel.app"
-const apiUrl = "https://dietetic-lab-back.vercel.app" 
+// Use environment variables with fallback to default values for backward compatibility
+const baseUrl = process.env.CYPRESS_BASE_URL || "https://dietetic-lab.vercel.app"
+const apiUrl = process.env.CYPRESS_API_URL || "https://dietetic-lab-back.vercel.app" 
 
 export default defineConfig({
     e2e: {
